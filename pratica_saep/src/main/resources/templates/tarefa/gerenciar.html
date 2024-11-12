@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <!-- Cabeçalho com navegação -->
+    <!-- Cabeçalho -->
     <div th:replace="~{header}"></div>
 
     <h1>Gerenciar Tarefas</h1>
@@ -19,9 +19,9 @@
             <p><strong>Setor:</strong> <span th:text="${tarefa.setor}"></span></p>
             <p><strong>Responsável:</strong> <span th:text="${tarefa.usuario.nome}"></span></p>
 
-            <!-- Formulário de atualização de status -->
+            <!-- Formulário para atualizar status -->
             <form th:action="@{/tarefas/atualizarStatus}" method="post">
-                <input type="hidden" th:name="id" th:value="${tarefa.id}">
+                <input type="hidden" th:name="id" th:value="${tarefa.id}" />
                 <label for="status">Alterar Status:</label>
                 <select th:name="status">
                     <option th:value="A_FAZER" th:selected="${tarefa.status == 'A_FAZER'}">A Fazer</option>
@@ -33,9 +33,12 @@
 
             <!-- Formulário de exclusão -->
             <form th:action="@{/tarefas/excluir}" method="post">
-                <input type="hidden" th:name="id" th:value="${tarefa.id}">
+                <input type="hidden" th:name="id" th:value="${tarefa.id}" />
                 <button type="submit">Excluir</button>
             </form>
+
+            <!-- Botão para editar a tarefa -->
+            <a th:href="@{/tarefas/cadastrar/{id}(id=${tarefa.id})}">Editar</a>
         </div>
     </div>
 
@@ -48,9 +51,9 @@
             <p><strong>Setor:</strong> <span th:text="${tarefa.setor}"></span></p>
             <p><strong>Responsável:</strong> <span th:text="${tarefa.usuario.nome}"></span></p>
 
-            <!-- Formulário de atualização de status -->
+            <!-- Formulário para atualizar status -->
             <form th:action="@{/tarefas/atualizarStatus}" method="post">
-                <input type="hidden" th:name="id" th:value="${tarefa.id}">
+                <input type="hidden" th:name="id" th:value="${tarefa.id}" />
                 <label for="status">Alterar Status:</label>
                 <select th:name="status">
                     <option th:value="A_FAZER" th:selected="${tarefa.status == 'A_FAZER'}">A Fazer</option>
@@ -62,9 +65,12 @@
 
             <!-- Formulário de exclusão -->
             <form th:action="@{/tarefas/excluir}" method="post">
-                <input type="hidden" th:name="id" th:value="${tarefa.id}">
+                <input type="hidden" th:name="id" th:value="${tarefa.id}" />
                 <button type="submit">Excluir</button>
             </form>
+
+            <!-- Botão para editar a tarefa -->
+            <a th:href="@{/tarefas/cadastrar/{id}(id=${tarefa.id})}">Editar</a>
         </div>
     </div>
 
@@ -77,9 +83,9 @@
             <p><strong>Setor:</strong> <span th:text="${tarefa.setor}"></span></p>
             <p><strong>Responsável:</strong> <span th:text="${tarefa.usuario.nome}"></span></p>
 
-            <!-- Formulário de atualização de status -->
+            <!-- Formulário para atualizar status -->
             <form th:action="@{/tarefas/atualizarStatus}" method="post">
-                <input type="hidden" th:name="id" th:value="${tarefa.id}">
+                <input type="hidden" th:name="id" th:value="${tarefa.id}" />
                 <label for="status">Alterar Status:</label>
                 <select th:name="status">
                     <option th:value="A_FAZER" th:selected="${tarefa.status == 'A_FAZER'}">A Fazer</option>
@@ -91,9 +97,12 @@
 
             <!-- Formulário de exclusão -->
             <form th:action="@{/tarefas/excluir}" method="post">
-                <input type="hidden" th:name="id" th:value="${tarefa.id}">
+                <input type="hidden" th:name="id" th:value="${tarefa.id}" />
                 <button type="submit">Excluir</button>
             </form>
+
+            <!-- Botão para editar a tarefa -->
+            <a th:href="@{/tarefas/cadastrar/{id}(id=${tarefa.id})}">Editar</a>
         </div>
     </div>
 </body>

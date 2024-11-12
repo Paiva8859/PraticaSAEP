@@ -2,31 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Cadastrar Tarefa</title>
+    <!-- Usando o Thymeleaf para resolver o caminho do CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+    <!-- Cabeçalho -->
     <div th:replace="~{header}"></div>
 
-    <h1>Cadastrar Tarefa</h1>
+    <h1 th:text="${tarefa.id == null ? 'Cadastrar Tarefa' : 'Editar Tarefa'}"></h1>
+
+    <!-- Formulário para cadastrar ou editar tarefa -->
     <form th:action="@{/tarefas/salvar}" method="post" th:object="${tarefa}">
+        <input type="hidden" th:field="*{id}" />
+
         <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" th:field="*{descricao}" required>
-        
+        <input type="text" id="descricao" th:field="*{descricao}" required />
+
         <label for="setor">Setor:</label>
-        <input type="text" id="setor" th:field="*{setor}" required>
-        
+        <input type="text" id="setor" th:field="*{setor}" required />
+
         <label for="prioridade">Prioridade:</label>
         <select id="prioridade" th:field="*{prioridade}">
-            <option value="BAIXA">Baixa</option>
-            <option value="MEDIA">Média</option>
-            <option value="ALTA">Alta</option>
-        </select>
-        
-        <label for="usuario">Usuário:</label>
-        <select id="usuario" th:field="*{usuario.id}">
-            <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.nome}"></option>
+            <option value="BAIXA" th:selected="${tarefa.prioridade == 'BAIXA'}">Baixa</option>
+            <option value="MEDIA" th:selected="${tarefa.prioridade == 'MEDIA'}">Média</option>
+            <option value="ALTA" th:selected="${tarefa.prioridade == 'ALTA'}">Alta</option>
         </select>
 
-        <button type="submit">Cadastrar</button>
+        <label for="usuario">Usuário:</label>
+        <select id="usuario" th:field="*{usuario.id}">
+            <option th:each="user : ${usuarios}" 
+                    th:value="${user.id}" 
+                    th:text="${user.nome}" 
+                    th:selected="${tarefa.usuario != null && tarefa.usuario.id == user.id}"></option>
+        </select>
+
+        <button type="submit" th:text="${tarefa.id == null ? 'Cadastrar' : 'Salvar Alterações'}"></button>
     </form>
 </body>
 </html>

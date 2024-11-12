@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,21 +28,37 @@ public class TarefaController {
     public String exibirFormularioCadastro(Model model) {
         List<Usuario> usuarios = usuarioRepository.findAll();
         model.addAttribute("usuarios", usuarios);
-        model.addAttribute("tarefa", new Tarefa());
+        model.addAttribute("tarefa", new Tarefa()); // Para formulário de criação
         return "tarefa/cadastrar";
     }
 
-    // Método POST para salvar a tarefa
+    // Método GET para exibir o formulário de edição com os dados de uma tarefa existente
+    @GetMapping("/tarefas/cadastrar/{id}")
+    public String exibirFormularioCadastro(@PathVariable Long id, Model model) {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        model.addAttribute("usuarios", usuarios);
+        
+        // Carrega a tarefa existente pelo ID
+        Tarefa tarefa = tarefaRepository.findById(id)
+                                       .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+        
+        // Log para verificar se a tarefa foi carregada corretamente
+        System.out.println("Tarefa carregada: " + tarefa.getDescricao());
+
+        model.addAttribute("tarefa", tarefa);  // Adiciona a tarefa no modelo
+        return "tarefa/cadastrar";
+    }
+
+    // Método POST para salvar a tarefa (incluir tanto a criação quanto a atualização)
     @PostMapping("/tarefas/salvar")
     public String salvarTarefa(Tarefa tarefa) {
-        tarefaRepository.save(tarefa); 
-        return "redirect:/tarefas/cadastrar?sucesso"; 
+        tarefaRepository.save(tarefa); // Salva a tarefa, se for uma tarefa existente, o save substitui os dados
+        return "redirect:/tarefas/gerenciar?sucesso"; // Redireciona para o gerenciamento
     }
 
     // Método GET para exibir a página de gerenciamento de tarefas
     @GetMapping("/tarefas/gerenciar")
     public String gerenciarTarefas(Model model) {
-        // Carregar todas as tarefas do banco de dados
         List<Tarefa> tarefas = tarefaRepository.findAll();
 
         // Separar as tarefas por status (utilizando enums)
@@ -62,7 +79,7 @@ public class TarefaController {
 
         return "tarefa/gerenciar";
     }
-    
+
     // Método para editar o status de uma tarefa
     @PostMapping("/tarefas/atualizarStatus")
     public String atualizarStatus(@RequestParam Long id, @RequestParam Tarefa.Status status) {
