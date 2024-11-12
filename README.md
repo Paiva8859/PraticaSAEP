@@ -43,7 +43,7 @@ flowchart TD
     A --> D[Excluir Tarefa]
     A --> E[Visualizar Tarefas]
 
-    B -- [Em seguida] -- E
+    B -- F[Em seguida] --> E
     C --> E
     D --> E
     %% Estilo para o ator "Administrador"
