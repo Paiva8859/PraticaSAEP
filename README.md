@@ -43,9 +43,11 @@ flowchart TD
     A --> D[Excluir Tarefa]
     A --> E[Visualizar Tarefas]
 
-    B --> E
-    C --> E
-    D --> E
+    B -- Em seguida --> E
+    C -- Em seguida --> E
+    D -- Em seguida --> E
+    %% Estilo para o ator "Administrador"
+    style A fill:#0000FF,stroke:#333,stroke-width:2px
 ```
 ## Script do banco de dados PostgreSQL:
             CREATE DATABASE pratica_saep;
