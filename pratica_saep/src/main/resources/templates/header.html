@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Tarefas</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/" th:href="@{/}">Página Inicial</a></li>
+                <li><a href="/usuarios/cadastrar" th:href="@{/usuarios/cadastrar}">Cadastrar Usuário</a></li>
+                <li><a href="/tarefas/cadastrar" th:href="@{/tarefas/cadastrar}">Cadastrar Tarefa</a></li>
+                <li><a href="/tarefas/gerenciar" th:href="@{/tarefas/gerenciar}">Gerenciar Tarefas</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
