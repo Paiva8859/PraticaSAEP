@@ -47,3 +47,6 @@ flowchart TD
     C --> E
     D --> E
 ```
+## Script do banco de dados PostgreSQL:
+            CREATE DATABASE pratica_saep;
+Não é necessário criar tabelas, já que estas são criadas automaticamente pelo JPA.
