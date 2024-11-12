@@ -44,8 +44,8 @@ flowchart TD
     A --> E[Visualizar Tarefas]
 
     B -- Em seguida --> E
-    C --> E
-    D --> E
+    C -- Em seguida --> E
+    D -- Em seguida --> E
     %% Estilo para o ator "Administrador"
     style A fill:#0000FF,stroke:#333,stroke-width:2px
 ```
