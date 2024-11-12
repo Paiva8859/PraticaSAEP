@@ -47,7 +47,7 @@ flowchart TD
     C --> E
     D --> E
     %% Estilo para o ator "Administrador"
-    style A fill:rgb(0, 0, 255),stroke:#333,stroke-width:2px
+    style A fill:#0000FF,stroke:#333,stroke-width:2px
 ```
 ## Script do banco de dados PostgreSQL:
             CREATE DATABASE pratica_saep;
